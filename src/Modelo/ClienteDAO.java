@@ -128,5 +128,28 @@ public boolean RegistrarCliente(Cliente cl) {
         }
         
     }
+    public Cliente Buscarcliente(int idcliente){
+        Cliente cl = new Cliente();
+        String sql = "SELECT * \n" +
+"FROM cliente c \n" +
+"INNER JOIN persona p ON p.idpersona = c.persona_idpersona\n" +
+"WHERE c.idcliente = ?";
+        try{
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1,idcliente);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                cl.setPnombre(rs.getString("Pnombre"));
+                cl.setTelefono(rs.getString("telefono"));
+                cl.setDireccion(rs.getString("Direccion"));
+            
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        
+        }
+        return cl;
+    }
     
 }
