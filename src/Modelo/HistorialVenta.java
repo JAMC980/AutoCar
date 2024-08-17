@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class HistorialVenta {
     
-    private int idHistorial;
+    private int idHistoria;
     private String sucursal;
     private int idfactura_venta;
     private int empleado_idempleado;
