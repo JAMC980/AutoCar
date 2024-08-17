@@ -44,9 +44,11 @@ public class Pagina_Principal extends javax.swing.JFrame {
     HistorialMantenimientoDAO hima = new HistorialMantenimientoDAO();
     int item;
     double Totalpagar = 0.00;
+    
     public Pagina_Principal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        vDAO.consultarSeguro(comboseguro);
     }
 
     public void ListarCliente() {
@@ -205,12 +207,12 @@ public class Pagina_Principal extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         txtestadoNV = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtseguroNV = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         txtcosto_ventaNV = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         txtbodegaNV = new javax.swing.JTextField();
         btneliminarventa = new javax.swing.JButton();
+        comboseguro = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaNR = new javax.swing.JTable();
@@ -550,19 +552,6 @@ public class Pagina_Principal extends javax.swing.JFrame {
 
         jLabel6.setText("Seguro");
 
-        txtseguroNV.setBackground(new java.awt.Color(204, 204, 204));
-        txtseguroNV.setBorder(null);
-        txtseguroNV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtseguroNVActionPerformed(evt);
-            }
-        });
-        txtseguroNV.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtseguroNVKeyPressed(evt);
-            }
-        });
-
         jLabel23.setText("Estado");
 
         txtcosto_ventaNV.setBackground(new java.awt.Color(204, 204, 204));
@@ -591,6 +580,8 @@ public class Pagina_Principal extends javax.swing.JFrame {
                 btneliminarventaActionPerformed(evt);
             }
         });
+
+        comboseguro.setEditable(true);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -637,7 +628,9 @@ public class Pagina_Principal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
-                                    .addComponent(txtseguroNV, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(comboseguro, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(32, 32, 32)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel22)
@@ -650,7 +643,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel5Layout.createSequentialGroup()
                                         .addComponent(jLabel24)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                                         .addComponent(jLabel9))
                                     .addGroup(jPanel5Layout.createSequentialGroup()
                                         .addComponent(txtbodegaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -658,7 +651,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
                                         .addComponent(txtfechaNuevaV, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel10)))
-                        .addContainerGap(74, Short.MAX_VALUE))))
+                        .addContainerGap(62, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -681,9 +674,9 @@ public class Pagina_Principal extends javax.swing.JFrame {
                             .addComponent(txtfechaNuevaV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtVINNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtestadoNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtseguroNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtcosto_ventaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtbodegaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtbodegaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboseguro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2299,7 +2292,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
                 String idVehiculo = txtidvehiculoNV.getText();
                 Double precio = Double.valueOf(txtcosto_ventaNV.getText());
                 String estado = txtestadoNV.getText();
-                String seguro = txtseguroNV.getText();
+               
                 String bodega = txtbodegaNV.getText();
                 String fecha = txtfechaNuevaV.getText();
                  if(!"Vendido".equals(estado) && !"Rentado".equals(estado)) {
@@ -2316,7 +2309,6 @@ public class Pagina_Principal extends javax.swing.JFrame {
                 lista.add(idVehiculo);
                 lista.add(precio);
                 lista.add(estado);
-                lista.add(seguro);
                 lista.add(bodega);
                 lista.add(fecha);
 
@@ -2351,116 +2343,6 @@ public class Pagina_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_txtestadoNVKeyPressed
-
-    private void txtseguroNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtseguroNVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtseguroNVActionPerformed
-
- /*   private void txtseguroNVKeyPressed(java.awt.event.KeyEvent evt) {
-    if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        if(!"".equals(txtVINNV.getText())) {
-            String idVehiculo = txtidvehiculoNV.getText();
-            Double precio = Double.valueOf(txtcosto_ventaNV.getText());
-            String estado = txtestadoNV.getText();
-            String seguro = txtseguroNV.getText();
-            String bodega = txtbodegaNV.getText();
-
-            // Verificar si el vehículo ya está registrado en la tabla
-            for (int i = 0; i < TablaNV.getRowCount(); i++ ){
-                if(TablaNV.getValueAt(i, 1).equals(idVehiculo)){
-                    JOptionPane.showMessageDialog(null, "El vehículo ya está registrado");
-                    return;
-                }
-            }
-
-            // Verificar si el estado es "Disponible"
-            if("Disponible".equals(estado)) {
-                modelo = (DefaultTableModel) TablaNV.getModel();
-                
-                ArrayList<Object> lista = new ArrayList<>();
-                lista.add(item);
-                lista.add(idVehiculo);
-                lista.add(precio);
-                lista.add(estado);
-                lista.add(seguro);
-                lista.add(bodega);
-
-                Object[] o = new Object[6];
-                o[0] = lista.get(1);  
-                o[1] = lista.get(2); 
-                o[2] = lista.get(3); 
-                o[3] = lista.get(4);
-                o[4] = lista.get(5);
-
-                modelo.addRow(o);
-                TablaNV.setModel(modelo);
-
-                // Actualizar el estado del vehículo a "Vendido"
-                actualizarEstadoVehiculo(idVehiculo, "Vendido");
-
-                // Actualizar el estado en la interfaz
-                txtestadoNV.setText("Vendido");
-
-                TotalPagar();
-            } else {
-                JOptionPane.showMessageDialog(null, "Vehículo no disponible");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Ingrese el VIN del vehículo");
-        }
-    }
-}
-*/
-    
-    private void txtseguroNVKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtseguroNVKeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        if(!"".equals(txtseguroNV.getText())) {
-            String idVehiculo = txtidvehiculoNV.getText();
-            Double precio = Double.valueOf(txtcosto_ventaNV.getText());
-            String estado = txtestadoNV.getText();
-            String seguro = txtseguroNV.getText();
-            String bodega = txtbodegaNV.getText();
-            String fecha = txtfechaNuevaV.getText();
-            if(!"Vendido".equals(estado) && !"Rentado".equals(estado)) {
-                modelo = (DefaultTableModel) TablaNV.getModel();
-                for (int i = 0; i < TablaNV.getRowCount(); i++ ){
-                    if(TablaNV.getValueAt(i, 0).equals(txtidvehiculoNV.getText())){
-                        LimpiarVenta();
-                       JOptionPane.showMessageDialog(null,"El vehiculo ya esta registrado");
-                       return;
-                    }
-                }
-                
-                ArrayList<Object> lista = new ArrayList<>();
-                lista.add(item);
-                lista.add(idVehiculo);
-                lista.add(precio);
-                lista.add(estado);
-                lista.add(seguro);
-                lista.add(bodega);
-                lista.add(fecha);
-
-                Object[] o = new Object[7];
-                o[0] = lista.get(1);  
-                o[1] = lista.get(2); 
-                o[2] = lista.get(3); 
-                o[3] = lista.get(4);
-                o[4] = lista.get(5);
-                o[5] = lista.get(6);
-                modelo.addRow(o);
-                TablaNV.setModel(modelo);
-                TotalPagar();
-                LimpiarVenta();
-            } else {
-                LimpiarVenta();
-                JOptionPane.showMessageDialog(null, "Vehículo no disponible");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Ingrese el seguro del vehículo");
-        }
-    }
-    }//GEN-LAST:event_txtseguroNVKeyPressed
 
     private void txtbodegaNVKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbodegaNVKeyPressed
         // TODO add your handling code here:
@@ -2681,6 +2563,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnnuevomantenimientoNV;
     private javax.swing.JButton btnserviciosNV;
     private javax.swing.JButton btnvehiculosNV;
+    private javax.swing.JComboBox<String> comboseguro;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2805,7 +2688,6 @@ public class Pagina_Principal extends javax.swing.JFrame {
     private javax.swing.JTextField txtproductoNR;
     private javax.swing.JTextField txtproveedorV;
     private javax.swing.JTextField txtsapellidoC;
-    private javax.swing.JTextField txtseguroNV;
     private javax.swing.JTextField txtsnombreC;
     private javax.swing.JTextField txtstokdiskNR;
     private javax.swing.JTextField txttelefonoC;
@@ -2851,7 +2733,6 @@ public class Pagina_Principal extends javax.swing.JFrame {
     private void LimpiarVenta(){
         txtidvehiculoNV.setText("");
         txtVINNV.setText("");
-        txtseguroNV.setText("");
         txtcosto_ventaNV.setText("");
         txtestadoNV.setText("");
         txtbodegaNV.setText("");

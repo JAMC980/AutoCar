@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 
 
 public class VehiculoDAO {
@@ -160,5 +161,20 @@ public class VehiculoDAO {
         return vehiculo;
     }
     
-    
+    public void consultarSeguro(JComboBox comboseguro){
+       String sql = "SELECT tipo FROM seguro";
+       try{
+           con= cn.getConnection();
+           ps = con.prepareStatement(sql);
+           rs = ps.executeQuery();
+           while (rs.next()){
+               comboseguro.addItem(rs.getString("nombre"));
+           
+           }
+       } catch (SQLException e){
+           System.out.print(e.toString());
+       }
+  
+    }
+         
 }
