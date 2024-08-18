@@ -246,7 +246,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
         jLabel55 = new javax.swing.JLabel();
         jLabel56 = new javax.swing.JLabel();
         txtidvehiculoNR = new javax.swing.JTextField();
-        jLabel57 = new javax.swing.JLabel();
+        TotalpagarNR = new javax.swing.JLabel();
         txtidclienteNR = new javax.swing.JTextField();
         jLabel50 = new javax.swing.JLabel();
         txtnombreclienteNR = new javax.swing.JTextField();
@@ -799,15 +799,15 @@ public class Pagina_Principal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "idVehiculo", "Seguro", "Precio", "Total", "metodo_pago"
+                "idVehiculo", "Precio", "Seguro", "Total", "metodo_pago"
             }
         ));
         TablaNR.setSelectionBackground(new java.awt.Color(153, 153, 153));
         jScrollPane2.setViewportView(TablaNR);
         if (TablaNR.getColumnModel().getColumnCount() > 0) {
             TablaNR.getColumnModel().getColumn(0).setPreferredWidth(30);
-            TablaNR.getColumnModel().getColumn(1).setPreferredWidth(100);
-            TablaNR.getColumnModel().getColumn(2).setPreferredWidth(30);
+            TablaNR.getColumnModel().getColumn(1).setPreferredWidth(30);
+            TablaNR.getColumnModel().getColumn(2).setPreferredWidth(100);
             TablaNR.getColumnModel().getColumn(3).setPreferredWidth(30);
         }
 
@@ -852,8 +852,8 @@ public class Pagina_Principal extends javax.swing.JFrame {
             }
         });
 
-        jLabel57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/image 9.png"))); // NOI18N
-        jLabel57.setText("Total a pagar");
+        TotalpagarNR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/image 9.png"))); // NOI18N
+        TotalpagarNR.setText("Total a pagar");
 
         txtidclienteNR.setBackground(new java.awt.Color(204, 204, 204));
         txtidclienteNR.setBorder(null);
@@ -962,7 +962,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
                                             .addComponent(jLabel26)
                                             .addComponent(txtfechafinNR, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel57)
+                                        .addComponent(TotalpagarNR)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(combompagoNR, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -1053,7 +1053,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
                                     .addComponent(txtfechainicioNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel57)
+                                    .addComponent(TotalpagarNR)
                                     .addComponent(combompagoNR))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -2505,7 +2505,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
                  if(!"Vendido".equals(estado) && !"Rentado".equals(estado)) {
                 modelo = (DefaultTableModel) TablaNV.getModel();
                 for (int i = 0; i < TablaNV.getRowCount(); i++ ){
-                    if(TablaNV.getValueAt(i, 1).equals(txtidvehiculoNV.getText())){
+                    if(TablaNV.getValueAt(i, 0).equals(txtidvehiculoNV.getText())){
                        JOptionPane.showMessageDialog(null,"El vehiculo ya esta registrado");
                        return;
                     }
@@ -2792,8 +2792,53 @@ public class Pagina_Principal extends javax.swing.JFrame {
 
     private void txtfechaemisionNRKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfechaemisionNRKeyPressed
         // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(!"".equals(txtfechaemisionNR.getText())){
+                String idVehiculo = txtidvehiculoNR.getText();
+                Double precio = Double.valueOf(txtprecioNR.getText());
+                String estado = txtestadoNR.getText();
+                //String seguro = txtseguroNV.getText();
+                String seguro = comboboxseguroNR.getSelectedItem().toString();
+                String bodega = txtbodegaNR.getText();
+                String fecha = txtfechaemisionNR.getText();
+                 if(!"Vendido".equals(estado) && !"Rentado".equals(estado)) {
+                modelo = (DefaultTableModel) TablaNV.getModel();
+                for (int i = 0; i < TablaNR.getRowCount(); i++ ){
+                    item = item + 1;
+                    if(TablaNR.getValueAt(i, 0).equals(txtidvehiculoNR.getText())){
+                       JOptionPane.showMessageDialog(null,"El vehiculo ya esta registrado");
+                       return;
+                    }
+                }
+                ArrayList<Object> lista = new ArrayList<>();
+                lista.add(item);
+                lista.add(idVehiculo);
+                lista.add(precio);
+                lista.add(estado);
+                lista.add(seguro);
+                lista.add(bodega);
+                lista.add(fecha);
+
+                Object[] o = new Object[7];
+                o[0] = lista.get(1);  
+                o[1] = lista.get(2); 
+                o[2] = lista.get(3); 
+                o[3] = lista.get(4);
+                o[4] = lista.get(5);
+                o[5] = lista.get(6);
+
+                modelo.addRow(o);
+                TablaNR.setModel(modelo);
+                 }else{
+                     LimpiarVenta();
+                     JOptionPane.showMessageDialog(null,"Vehiculo no disponible");
+                 }
+                
+            }else{
+                JOptionPane.showMessageDialog(null,"Ingrese la fecha");
+            }
         
-        
+        }
         
     }//GEN-LAST:event_txtfechaemisionNRKeyPressed
 
@@ -2844,6 +2889,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
     private javax.swing.JTable Tablahistorialrenta;
     private javax.swing.JTable Tablahistorialventa;
     private javax.swing.JTable Tablavehiculos;
+    private javax.swing.JLabel TotalpagarNR;
     private javax.swing.JButton btnSM;
     private javax.swing.JButton btnSR;
     private javax.swing.JButton btnSV;
@@ -2912,7 +2958,6 @@ public class Pagina_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
@@ -3054,6 +3099,8 @@ public class Pagina_Principal extends javax.swing.JFrame {
         }
         LabelTotal.setText(String.format("%.2f", Totalpagar));
     }
+    
+    
     private void LimpiarVenta(){
         txtidvehiculoNV.setText("");
         txtVINNV.setText("");
