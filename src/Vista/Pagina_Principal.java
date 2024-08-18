@@ -228,7 +228,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
         txtdireccionNV = new javax.swing.JTextField();
         jLabel72 = new javax.swing.JLabel();
         comboseguro = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        btngenerarfacturaNV = new javax.swing.JButton();
         combompago = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -630,11 +630,11 @@ public class Pagina_Principal extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setText("GENERAR FACTURA 2 ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btngenerarfacturaNV.setBackground(new java.awt.Color(204, 204, 204));
+        btngenerarfacturaNV.setText("GENERAR FACTURA  ");
+        btngenerarfacturaNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btngenerarfacturaNVActionPerformed(evt);
             }
         });
 
@@ -706,7 +706,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
                                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                 .addComponent(txtempleadoNV, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabel75))
-                                            .addComponent(jButton2)))
+                                            .addComponent(btngenerarfacturaNV)))
                                     .addGroup(jPanel5Layout.createSequentialGroup()
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel71)
@@ -785,7 +785,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(combompago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))
+                            .addComponent(btngenerarfacturaNV))
                         .addGap(8, 8, 8))
                     .addComponent(LabelTotal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(169, Short.MAX_VALUE))
@@ -950,10 +950,10 @@ public class Pagina_Principal extends javax.swing.JFrame {
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(jLabel26)
-                                        .addContainerGap(185, Short.MAX_VALUE))
+                                        .addContainerGap(190, Short.MAX_VALUE))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(txtfechafinNR, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(154, Short.MAX_VALUE))))
+                                        .addContainerGap(159, Short.MAX_VALUE))))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel57)
                                 .addGap(0, 0, Short.MAX_VALUE))))
@@ -2723,10 +2723,10 @@ public class Pagina_Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtidempleadoNVKeyPressed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btngenerarfacturaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btngenerarfacturaNVActionPerformed
         // TODO add your handling code here:
         RegistrarVenta();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btngenerarfacturaNVActionPerformed
     private void comboseguroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboseguroKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboseguroKeyPressed
@@ -2807,6 +2807,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
     private javax.swing.JButton btneliminarP;
     private javax.swing.JButton btneliminarV;
     private javax.swing.JButton btneliminarventa;
+    private javax.swing.JButton btngenerarfacturaNV;
     private javax.swing.JButton btnguardarC;
     private javax.swing.JButton btnguardarP;
     private javax.swing.JButton btnguardarV;
@@ -2823,7 +2824,6 @@ public class Pagina_Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> combompago;
     private javax.swing.JComboBox<String> comboseguro;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
