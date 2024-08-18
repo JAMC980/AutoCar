@@ -17,7 +17,7 @@ public class Venta {
     public Venta() {
     }
 
-    public Venta(int idfactura_venta, Date fecha, int Empleado, int Cliente, int Vehiculo, int Sucursal, int Seguro, Double Total, int mpago) {
+    public Venta(int idfactura_venta, Date fecha, int Empleado,String empleadoN, int Cliente, int Vehiculo, int Sucursal, int Seguro, Double Total, int mpago) {
         this.idfactura_venta = idfactura_venta;
         this.fecha = fecha;
         this.Empleado = Empleado;

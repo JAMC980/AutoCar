@@ -223,6 +223,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
         txtdireccionNV = new javax.swing.JTextField();
         jLabel72 = new javax.swing.JLabel();
         comboseguro = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaNR = new javax.swing.JTable();
@@ -604,6 +605,13 @@ public class Pagina_Principal extends javax.swing.JFrame {
 
         comboseguro.setEditable(true);
 
+        jButton2.setText("Guardar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -660,7 +668,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel5Layout.createSequentialGroup()
                                         .addComponent(jLabel24)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                                         .addComponent(jLabel9))
                                     .addGroup(jPanel5Layout.createSequentialGroup()
                                         .addComponent(txtbodegaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -668,7 +676,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
                                         .addComponent(txtfechaNuevaV, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel10)))
-                        .addContainerGap(75, Short.MAX_VALUE))
+                        .addContainerGap(74, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel71)
@@ -678,6 +686,10 @@ public class Pagina_Principal extends javax.swing.JFrame {
                             .addComponent(jLabel72)
                             .addComponent(txtdireccionNV, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(330, 330, 330))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -739,7 +751,9 @@ public class Pagina_Principal extends javax.swing.JFrame {
                                 .addComponent(LabelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(14, 14, 14)))
                         .addComponent(txtdireccionNV, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab1", jPanel5);
@@ -2566,6 +2580,11 @@ public class Pagina_Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtidempleadoNVKeyPressed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        RegistrarVenta();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2639,6 +2658,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnvehiculosNV;
     private javax.swing.JComboBox<String> comboseguro;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2817,4 +2837,15 @@ public class Pagina_Principal extends javax.swing.JFrame {
         txtfechaNuevaV.setText("");
     }
 
+        private void RegistrarVenta(){
+            int cliente = Integer.parseInt(txtIDclienteNV.getText());
+            int empleado = Integer.parseInt(txtidempleadoNV.getText());
+            int sucursal  = Integer.parseInt(Labelsucursal.getText());
+            double monto = Double.parseDouble(LabelTotal.getText());
+            ve.setCliente(cliente);
+            ve.setEmpleado(empleado);
+            ve.setSucursal(sucursal);
+            ve.setTotal(monto);
+            veDAo.RegistrarVenta(ve); 
+        }
 }
