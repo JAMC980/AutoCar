@@ -14,24 +14,26 @@ public class VentaDAO {
     PreparedStatement ps;
     ResultSet rs;
     int r;
-    public int RegistrarVenta(Venta ve){
-        String sql ="INSERT INTO factura_venta (fecha,empleado_idempleado,cliente_idcliente,vehiculo_idvehiculo,sucursal_idsucursal,seguro_idseguro,total,mpago_idmpago) VALUES (?,?,?,?,?,?,?,?)";
-        try{
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setDate(1, (Date) ve.getFecha());
-            ps.setInt(2,ve.getEmpleado());
-            ps.setInt(3,ve.getCliente());
-            ps.setInt(4,ve.getVehiculo());
-            ps.setInt(5,ve.getSucursal());
-            ps.setInt(6,ve.getSeguro());
-            ps.setDouble(7,ve.getTotal());
-            ps.setInt(8,ve.getMpago());
-            ps.execute();
-        }catch(SQLException e){
-            System.out.println(e.toString());
-        }
-        return r;
+    
+public int RegistrarVenta(Venta ve) {
+    String sql = "INSERT INTO factura_venta (fecha, Empleado_idEmpleado, Cliente_idCliente, Vehiculo_idVehiculo, sucursal_idsucursal, seguro_idseguro, Total, mpago_idmpago) VALUES (CURRENT_DATE,?,?,?,?,?,?,?)";
+    int r = 0;
+    try {
+        con = cn.getConnection();
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, ve.getEmpleado());
+        ps.setInt(2, ve.getCliente());
+        ps.setInt(3, ve.getVehiculo());
+        ps.setInt(4, ve.getSucursal());
+        ps.setInt(5, ve.getSeguro());
+        ps.setDouble(6, ve.getTotal());
+        ps.setInt(7, ve.getMpago());
+        r = ps.executeUpdate();  // Cambiado a executeUpdate()
+    } catch (SQLException e) {
+        System.out.println(e.toString());
     }
+    return r;
+}
+
     
 }

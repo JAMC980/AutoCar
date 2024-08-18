@@ -14,11 +14,11 @@ public class HistorialMantenimiento {
     private Date fechaMantenimiento;
     private String Descripcion;
     private Double costo;
-
+    private String mpago;
     public HistorialMantenimiento() {
     }
 
-    public HistorialMantenimiento(int idHistorial, String sucursal, int idfactura_mantenimiento, int empleado, int cliente, int vehiculo, Date fechaMantenimiento, String Descripcion, Double costo) {
+    public HistorialMantenimiento(int idHistorial, String sucursal, int idfactura_mantenimiento, int empleado, int cliente, int vehiculo, Date fechaMantenimiento, String Descripcion, Double costo, String mpago) {
         this.idHistorial = idHistorial;
         this.sucursal = sucursal;
         this.idfactura_mantenimiento = idfactura_mantenimiento;
@@ -28,6 +28,7 @@ public class HistorialMantenimiento {
         this.fechaMantenimiento = fechaMantenimiento;
         this.Descripcion = Descripcion;
         this.costo = costo;
+        this.mpago = mpago;
     }
 
     public int getIdHistorial() {
@@ -100,6 +101,14 @@ public class HistorialMantenimiento {
 
     public void setCosto(Double costo) {
         this.costo = costo;
+    }
+
+    public String getMpago() {
+        return mpago;
+    }
+
+    public void setMpago(String mpago) {
+        this.mpago = mpago;
     }
     
     

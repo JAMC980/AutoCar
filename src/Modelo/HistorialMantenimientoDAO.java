@@ -27,8 +27,10 @@ public class HistorialMantenimientoDAO {
 "    empleado e ON h.empleado_idempleado = e.idempleado\n" +
 "JOIN \n" +
 "    cliente c ON h.cliente_idcliente = c.idcliente\n" +
-"JOIN\n" +
-"    vehiculo v ON v.idVehiculo = h.vehiculo_idVehiculo";
+"JOIN \n" +
+"    vehiculo v ON v.idVehiculo = h.vehiculo_idVehiculo\n" +
+"JOIN \n" +
+"    mpago m ON h.mpago_idmpago = m.idmPago;";
         try{
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -44,6 +46,7 @@ public class HistorialMantenimientoDAO {
             hm.setFechaMantenimiento(rs.getDate("fechaMantenimiento"));
             hm.setDescripcion(rs.getString("descripcion"));
             hm.setCosto(rs.getDouble("costo"));
+            hm.setMpago(rs.getString("metodo_pago"));
             ListaM.add(hm);
             }
         }catch(SQLException e){
