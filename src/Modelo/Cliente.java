@@ -18,6 +18,7 @@ public class Cliente {
     private String telefono;
     private String correo;
     private String direccion;
+    private int personat;
 
     public Cliente() {
     }
@@ -98,5 +99,13 @@ public class Cliente {
         this.direccion = direccion;
     }
 
+    public int getPersonat() {
+        return personat;
+    }
+
+    public void setPersonat(int personat) {
+        this.personat = personat;
+    }
+    
     
 }

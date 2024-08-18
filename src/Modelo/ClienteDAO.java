@@ -17,19 +17,20 @@ public class ClienteDAO {
     ResultSet rs;
     
 public boolean RegistrarCliente(Cliente cl) {
-    String sql = "INSERT INTO persona (idPersona,Pnombre, Snombre, Papellido, Sapellido, telefono, correo, direccion)  VALUES (?,?,?,?,?,?,?,?)";
+    String sql = "INSERT INTO persona (Pnombre, Snombre, Papellido, Sapellido, telefono, correo, direccion, personat_idpersonat)  VALUES (?,?,?,?,?,?,?,?)";
    
     try {
         con = cn.getConnection();
         ps = con.prepareStatement(sql);
-        ps.setInt(1, cl.getIdPersona());
-        ps.setString(2, cl.getPnombre());
-        ps.setString(3, cl.getSnombre());
-        ps.setString(4, cl.getPapellido());
-        ps.setString(5, cl.getSapellido());
-        ps.setString(6, cl.getTelefono());
-        ps.setString(7, cl.getCorreo());
-        ps.setString(8, cl.getDireccion());
+        //ps.setInt(1, cl.getIdPersona());
+        ps.setString(1, cl.getPnombre());
+        ps.setString(2, cl.getSnombre());
+        ps.setString(3, cl.getPapellido());
+        ps.setString(4, cl.getSapellido());
+        ps.setString(5, cl.getTelefono());
+        ps.setString(6, cl.getCorreo());
+        ps.setString(7, cl.getDireccion());
+        ps.setInt(8, cl.getPersonat());
         ps.execute();
         
         return true;

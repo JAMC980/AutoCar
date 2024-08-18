@@ -179,13 +179,13 @@ public class VehiculoDAO {
     }
  
       public void consultarmpago(JComboBox combompago){
-       String sql = "SELECT CONCAT(idmpago, ' - ', metodo_pago) FROM `mpago`;";
+       String sql = "SELECT CONCAT(idmpago, ' ', metodo_pago) FROM `mpago`;";
        try{
            con= cn.getConnection();
            ps = con.prepareStatement(sql);
            rs = ps.executeQuery();
            while (rs.next()){
-               combompago.addItem(rs.getString("CONCAT(idmpago, ' - ', metodo_pago)"));
+               combompago.addItem(rs.getString("metodo_pago)"));
            
            }
        } catch (SQLException e){
