@@ -1,11 +1,10 @@
 
 package Modelo;
 
-import java.util.Date;
+
 
 public class Venta {
     private int idfactura_venta;
-    private Date fecha;
     private int Empleado;
     private int Cliente;
     private int Vehiculo;
@@ -17,9 +16,8 @@ public class Venta {
     public Venta() {
     }
 
-    public Venta(int idfactura_venta, Date fecha, int Empleado, int Cliente, int Vehiculo, int Sucursal, int Seguro, Double Total, int mpago) {
+    public Venta(int idfactura_venta, int Empleado, int Cliente, int Vehiculo, int Sucursal, int Seguro, Double Total, int mpago) {
         this.idfactura_venta = idfactura_venta;
-        this.fecha = fecha;
         this.Empleado = Empleado;
         this.Cliente = Cliente;
         this.Vehiculo = Vehiculo;
@@ -37,13 +35,6 @@ public class Venta {
         this.idfactura_venta = idfactura_venta;
     }
 
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
 
     public int getEmpleado() {
         return Empleado;
