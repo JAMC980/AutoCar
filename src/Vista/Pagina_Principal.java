@@ -18,6 +18,8 @@ import Modelo.Mantenimiento;
 import Modelo.MantenimientoDAO;
 import Modelo.Vehiculo;
 import Modelo.VehiculoDAO;
+import Modelo.Venta;
+import Modelo.VentaDAO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -46,6 +48,8 @@ public class Pagina_Principal extends javax.swing.JFrame {
     HistorialRentaDAO hire = new HistorialRentaDAO();
     HistorialMantenimiento hm = new HistorialMantenimiento();
     HistorialMantenimientoDAO hima = new HistorialMantenimientoDAO();
+    Venta ve = new Venta();
+    VentaDAO veDAo = new VentaDAO();
     int item;
     double Totalpagar = 0.00;
     public Pagina_Principal() {
