@@ -2,7 +2,6 @@
 package Modelo;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +15,7 @@ public class VentaDAO {
     int r;
     
 public int RegistrarVenta(Venta ve) {
-    String sql = "INSERT INTO factura_venta (fecha, Empleado_idEmpleado, Cliente_idCliente, Vehiculo_idVehiculo, sucursal_idsucursal, seguro_idseguro, Total, mpago_idmpago) VALUES (CURRENT_DATE,?,?,?,?,?,?,?)";
+    String sql = "INSERT INTO factura_venta (Empleado_idEmpleado, Cliente_idCliente, Vehiculo_idVehiculo, sucursal_idsucursal, seguro_idseguro, Total, mpago_idmpago) VALUES (?,?,?,?,?,?,?)";
     int r = 0;
     try {
         con = cn.getConnection();
