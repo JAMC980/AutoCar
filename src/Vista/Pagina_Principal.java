@@ -60,6 +60,8 @@ public class Pagina_Principal extends javax.swing.JFrame {
         vDAO.consultarSeguro(comboseguro);
         AutoCompleteDecorator.decorate(combompago);
         vDAO.consultarmpago(combompago);
+         AutoCompleteDecorator.decorate(comboboxseguroNR);
+        vDAO.consultarSeguro(comboboxseguroNR);
     }
 
     public void ListarCliente() {
@@ -237,7 +239,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
         jLabel49 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
         txtVINNR = new javax.swing.JTextField();
-        txtfechafin = new javax.swing.JTextField();
+        txtfechaemisionNR = new javax.swing.JTextField();
         jLabel53 = new javax.swing.JLabel();
         txtfechafinNR = new javax.swing.JTextField();
         jLabel54 = new javax.swing.JLabel();
@@ -264,7 +266,8 @@ public class Pagina_Principal extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         txtestadoNR = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtbodegaNR = new javax.swing.JTextField();
+        combompagoNR = new javax.swing.JComboBox<>();
         jPanel8 = new javax.swing.JPanel();
         jLabel58 = new javax.swing.JLabel();
         txtpnombreC = new javax.swing.JTextField();
@@ -716,15 +719,11 @@ public class Pagina_Principal extends javax.swing.JFrame {
                                             .addComponent(jLabel72)
                                             .addComponent(txtdireccionNV, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(58, 58, 58)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addComponent(LabelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE))
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addComponent(combompago, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LabelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(combompago, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 811, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 10, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -783,7 +782,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtdireccionNV, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(combompago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btngenerarfacturaNV))
                         .addGap(8, 8, 8))
@@ -800,7 +799,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Descripcion", "Cantidad", "Precio", "Total"
+                "idVehiculo", "Seguro", "Precio", "Total", "metodo_pago"
             }
         ));
         TablaNR.setSelectionBackground(new java.awt.Color(153, 153, 153));
@@ -810,7 +809,6 @@ public class Pagina_Principal extends javax.swing.JFrame {
             TablaNR.getColumnModel().getColumn(1).setPreferredWidth(100);
             TablaNR.getColumnModel().getColumn(2).setPreferredWidth(30);
             TablaNR.getColumnModel().getColumn(3).setPreferredWidth(30);
-            TablaNR.getColumnModel().getColumn(4).setPreferredWidth(30);
         }
 
         jLabel48.setText("idVehiculo");
@@ -822,8 +820,13 @@ public class Pagina_Principal extends javax.swing.JFrame {
         txtVINNR.setBackground(new java.awt.Color(204, 204, 204));
         txtVINNR.setBorder(null);
 
-        txtfechafin.setBackground(new java.awt.Color(204, 204, 204));
-        txtfechafin.setBorder(null);
+        txtfechaemisionNR.setBackground(new java.awt.Color(204, 204, 204));
+        txtfechaemisionNR.setBorder(null);
+        txtfechaemisionNR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtfechaemisionNRKeyPressed(evt);
+            }
+        });
 
         jLabel53.setText("Fecha inicio");
 
@@ -843,6 +846,11 @@ public class Pagina_Principal extends javax.swing.JFrame {
                 txtidvehiculoNRActionPerformed(evt);
             }
         });
+        txtidvehiculoNR.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtidvehiculoNRKeyPressed(evt);
+            }
+        });
 
         jLabel57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/image 9.png"))); // NOI18N
         jLabel57.setText("Total a pagar");
@@ -859,7 +867,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
 
         txtfechainicioNR.setText("       dd/mm/yy");
 
-        comboboxseguroNR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboboxseguroNR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seguro" }));
         comboboxseguroNR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboboxseguroNRActionPerformed(evt);
@@ -898,7 +906,14 @@ public class Pagina_Principal extends javax.swing.JFrame {
 
         jLabel31.setText("Bodega");
 
-        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
+        txtbodegaNR.setBackground(new java.awt.Color(204, 204, 204));
+
+        combompagoNR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Método de pago" }));
+        combompagoNR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combompagoNRActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -906,61 +921,52 @@ public class Pagina_Principal extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel77, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel50))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(txtidclienteNR, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtnombreclienteNR, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txttelefonoNR, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel28))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtdireccionNR, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jLabel55))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtnombreempleadoNR)))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(txtidempleadoNR)))
-                        .addGap(81, 81, 81)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel54)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtfechainicioNR, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel53))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel26)
-                                        .addContainerGap(190, Short.MAX_VALUE))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(txtfechafinNR, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(159, Short.MAX_VALUE))))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel57)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel77, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel28)
+                                    .addComponent(txttelefonoNR, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtidclienteNR, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(31, 31, 31)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtnombreclienteNR, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtdireccionNR, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jLabel50))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGap(19, 19, 19)
+                                        .addComponent(jLabel55))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtnombreempleadoNR)))
+                                    .addComponent(txtidempleadoNR))
+                                .addGap(81, 81, 81)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel54)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtfechainicioNR, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel53))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel26)
+                                            .addComponent(txtfechafinNR, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel57)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(combompagoNR, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel48)
                                     .addComponent(txtidvehiculoNR, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -970,8 +976,8 @@ public class Pagina_Principal extends javax.swing.JFrame {
                                         .addComponent(jLabel49))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtVINNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(28, 28, 28)
+                                        .addComponent(txtVINNR, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel56)
                                     .addComponent(comboboxseguroNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -985,19 +991,19 @@ public class Pagina_Principal extends javax.swing.JFrame {
                                     .addComponent(txtestadoNR, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(29, 29, 29)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtbodegaNR, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(55, 55, 55)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(txtfechafin, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 79, Short.MAX_VALUE))))))
+                                        .addComponent(txtfechaemisionNR, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addGap(39, 39, 39))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 791, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(31, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1011,60 +1017,66 @@ public class Pagina_Principal extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(jLabel30)
                     .addComponent(jLabel31))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtprecioNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtestadoNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtbodegaNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtfechaemisionNR)
+                        .addComponent(txtidvehiculoNR)
+                        .addComponent(comboboxseguroNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtVINNR, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtidvehiculoNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtVINNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtfechafin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboboxseguroNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtprecioNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtestadoNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel53, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel26))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(txtnombreclienteNR, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtidclienteNR, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel29))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(39, 39, 39)
-                                        .addComponent(jLabel28)))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtidclienteNR, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtnombreclienteNR, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(263, 263, 263))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(jLabel28)
                                 .addGap(241, 241, 241))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtfechafinNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtfechainicioNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel57)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel57)
+                                    .addComponent(combompagoNR))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel55)
-                                    .addComponent(jLabel77)
-                                    .addComponent(jLabel50))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtidempleadoNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
-                                .addComponent(jLabel54)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel27)
-                        .addGap(2, 2, 2)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel55)
+                                            .addComponent(jLabel77)
+                                            .addComponent(jLabel50))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtidempleadoNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGap(9, 9, 9)
+                                        .addComponent(jLabel54)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel27)
+                                .addGap(2, 2, 2))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel29)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtnombreempleadoNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtdireccionNR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1176,7 +1188,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(TablaClientes);
 
-        jLabel13.setText("IdCliente");
+        jLabel13.setText("IdClientee");
 
         txtidcliente.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -2735,6 +2747,10 @@ public class Pagina_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combompagoActionPerformed
 
+    private void combompagoNRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combompagoNRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combompagoNRActionPerformed
+
     private void txtnombreempleadoNRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreempleadoNRActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnombreempleadoNRActionPerformed
@@ -2743,10 +2759,43 @@ public class Pagina_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboboxseguroNRActionPerformed
 
+    private void txtidvehiculoNRKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidvehiculoNRKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (!"".equals(txtidvehiculoNR.getText())) {
+                int idVehiculo = Integer.parseInt(txtidvehiculoNR.getText());
+                v = vDAO.BuscarVehiculo(idVehiculo);
+                if (v.getVIN() != null) {
+                    txtVINNR.setText("" + v.getVIN());
+                    txtprecioNR.setText("" + v.getCosto_venta());
+                    txtestadoNR.setText("" + v.getEstado());
+                    txtbodegaNR.setText("" + v.getBodega());
+                    txtfechaemisionNR.requestFocus();
+                } else {
+                    txtVINNR.setText("");
+                    txtprecioNR.setText("");
+                    txtestadoNR.setText("");
+                    txtbodegaNR.setText("");
+                    txtfechaemisionNR.requestFocus();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingrese el id del vehiculo.");
+                txtidvehiculoNV.requestFocus();
+            }
+
+        }
+    }//GEN-LAST:event_txtidvehiculoNRKeyPressed
+
     private void txtidvehiculoNRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidvehiculoNRActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_txtidvehiculoNRActionPerformed
+
+    private void txtfechaemisionNRKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfechaemisionNRKeyPressed
+        // TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_txtfechaemisionNRKeyPressed
 
     /**
      * @param args the command line arguments
@@ -2822,6 +2871,7 @@ public class Pagina_Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnvehiculosNV;
     private javax.swing.JComboBox<String> comboboxseguroNR;
     private javax.swing.JComboBox<String> combompago;
+    private javax.swing.JComboBox<String> combompagoNR;
     private javax.swing.JComboBox<String> comboseguro;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -2911,13 +2961,13 @@ public class Pagina_Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtIDclienteNV;
     private javax.swing.JTextField txtTPNV1;
     private javax.swing.JTextField txtVINNR;
     private javax.swing.JTextField txtVINNV;
     private javax.swing.JTextField txtVINV;
     private javax.swing.JTextField txtañoV;
+    private javax.swing.JTextField txtbodegaNR;
     private javax.swing.JTextField txtbodegaNV;
     private javax.swing.JTextField txtbodegaV;
     private javax.swing.JTextField txtcolorV;
@@ -2934,8 +2984,8 @@ public class Pagina_Principal extends javax.swing.JFrame {
     private javax.swing.JTextField txtestadoNV;
     private javax.swing.JTextField txtestadoV;
     private javax.swing.JTextField txtfechaNuevaV;
+    private javax.swing.JTextField txtfechaemisionNR;
     private javax.swing.JTextField txtfechafacturam;
-    private javax.swing.JTextField txtfechafin;
     private javax.swing.JTextField txtfechafinNR;
     private javax.swing.JTextField txtfechafinm;
     private javax.swing.JTextField txtfechainicioNR;

@@ -193,4 +193,20 @@ public class VehiculoDAO {
        }
   
     }
+      
+    public void consultarmpagoNR(JComboBox comboboxseguroNR){
+       String sql = "SELECT CONCAT(idmpago, ' - ', metodo_pago) FROM `mpago`;";
+       try{
+           con= cn.getConnection();
+           ps = con.prepareStatement(sql);
+           rs = ps.executeQuery();
+           while (rs.next()){
+               comboboxseguroNR.addItem(rs.getString("CONCAT(idmpago, ' - ', metodo_pago)"));
+           
+           }
+       } catch (SQLException e){
+           System.out.print(e.toString());
+       }
+  
+    }
 }
